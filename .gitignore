@@ -1,0 +1,8 @@
+# no leaking of student files or any reports
+resources/
+out/
+
+# no Env leaking
+.env
+
+.vscode
