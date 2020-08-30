@@ -6,3 +6,7 @@ out/
 .env
 
 .vscode
+
+__pycache__
+
+moss.zip

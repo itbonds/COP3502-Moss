@@ -12,3 +12,6 @@ mossum = {git = "https://github.com/hjalti/mossum"}
 
 [requires]
 python_version = "3.6"
+
+[script]
+zip = "zip moss.zip config.py moss.py organize_submissions.py Pipfile Pipfile.lock README.md"

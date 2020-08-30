@@ -1,21 +1,26 @@
 import mosspy
 import os
 
+import config as cfg
+
+config = cfg.Config()
+
 moss_user_id = os.environ['moss_user_id']
-m = mosspy.Moss(moss_user_id, "java")
+m = mosspy.Moss(moss_user_id, config.moss_file_type)
 
-m.setDirectoryMode(1)
-m.setIgnoreLimit(1000)
-m.setNumberOfMatchingFiles(600)
+m.setDirectoryMode(1 if config.moss_directory_mode else 0)
+m.setIgnoreLimit(config.moss_ignore_limit)
+m.setNumberOfMatchingFiles(config.moss_number_of_matching_files)
 
-m.addFilesByWildcard("resources/submissions/*/*.java")
+m.addFilesByWildcard(config.moss_file_wildcard)
 
 url = m.send()
 
 print("Report URL:" + url) 
 
-m.saveWebPage(url, "out/report.html")
+# m.saveWebPage(url, "out/report.html")
 
+# Downloads the first page and each match link
 mosspy.download_report(url, "out/report/", connections=8, log_level=20)
 
 # TODO Clean up the mossum call
